@@ -2,7 +2,7 @@
 Examples for accessing ARCO-Mars surface and atmosphere reanalysis data
 
 
-##Note
+## Note
 There are two example directories. One for [Hugging Face](https://huggingface.co/) platform, and the other one for [EarthMover](https://www.earthmover.io/). 
 
 ## Examples
