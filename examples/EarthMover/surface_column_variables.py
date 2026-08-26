@@ -80,9 +80,9 @@ def bin_ls(ls, val, hr=None):
 fig, axes = plt.subplots(3, len(YEARS),
                           figsize=(5*len(YEARS), 11),
                           sharex=True)
-fig.suptitle("ARCO-Mars — Surface Pressure, Temperature & Dust\n"
-             "EMARS (blue+shading) | MACDA (red dashed) | OpenMARS (green dotted)",
-             fontsize=12)
+#fig.suptitle("ARCO-Mars — Surface Pressure, Temperature & Dust\n"
+#             "EMARS (blue+shading) | MACDA (red dashed) | OpenMARS (green dotted)",
+#             fontsize=12)
 
 # ── Load and plot per year ────────────────────────────────────
 for col, my in enumerate(YEARS):
@@ -158,12 +158,7 @@ for col, my in enumerate(YEARS):
             vm,vd = bin_ls(ls_e_, val_e, hr_e_)
             vs    = bin_ls(ls_e_, val_s)[0]
             ax.plot(LS_C,vm,color="steelblue",lw=1.2,label="EMARS")
-            ax.fill_between(LS_C,vm-vd,vm+vd,
-                            color="steelblue",alpha=0.1,
-                            label="diurnal ±1σ")
-            ax.fill_between(LS_C,vm-vs,vm+vs,
-                            color="steelblue",alpha=0.2,
-                            label="ensemble ±1σ")
+            
         # MACDA
         if mm.sum()>0:
             vm2,_ = bin_ls(ls_m_, val_m)
@@ -201,15 +196,15 @@ for col, my in enumerate(YEARS):
         ax_dust.set_ylim(0.01,5)
 
     # ── Labels ────────────────────────────────────────────────
-    ax_ps.set_title(LABELS[my], fontsize=10)
-    ax_dust.set_xlabel("Solar Longitude Ls (°)", fontsize=9)
+    ax_ps.set_title(LABELS[my], fontsize=14)
+    ax_dust.set_xlabel("Solar Longitude Ls (°)", fontsize=14)
     if col==0:
-        ax_ps.set_ylabel("Surface Pressure (Pa)",  fontsize=9)
-        ax_T.set_ylabel("Near-surface T (K)",      fontsize=9)
-        ax_dust.set_ylabel("Dust Optical Depth",  fontsize=9)
-        ax_ps.legend(fontsize=7, loc="upper left",
+        ax_ps.set_ylabel("P$_{s}$ (Pa)",  fontsize=14)
+        ax_T.set_ylabel("T (K)",      fontsize=14)
+        ax_dust.set_ylabel(r"$\tau$", fontsize=14)
+        ax_ps.legend(fontsize=10, loc="upper left",
                      framealpha=0.8)
-        ax_dust.legend(fontsize=7, loc="upper left")
+        ax_dust.legend(fontsize=10, loc="upper left")
 
 plt.tight_layout()
 plt.savefig("arco_3years.png", dpi=150, bbox_inches="tight")
